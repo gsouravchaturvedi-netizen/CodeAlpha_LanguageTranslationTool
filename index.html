@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FastLight – Free Text & Voice Translator</title>
+<meta name="theme-color" content="#1f5fbf">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cg%20opacity%3D%22.45%22%20stroke%3D%22%231f5fbf%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M3%2010h13M0%2017h11M4%2024h9%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%231f5fbf%22%3E%3Cpath%20d%3D%22M39.1%2019.9%20L28.7%2035.7%20L33.3%2039.3%20L45.9%2025.1Z%22%2F%3E%3Ccircle%20cx%3D%2242.5%22%20cy%3D%2222.5%22%20r%3D%224.3%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2237.5%22%20r%3D%222.9%22%2F%3E%3Cpath%20d%3D%22M43.4%2016.9%20L41.2%2019.8%20L44.8%2022.2%20L46.6%2019.1Z%22%2F%3E%3Ccircle%20cx%3D%2245%22%20cy%3D%2218%22%20r%3D%221.9%22%2F%3E%3Ccircle%20cx%3D%2243%22%20cy%3D%2221%22%20r%3D%222.2%22%2F%3E%3Ccircle%20cx%3D%2247%22%20cy%3D%2212.5%22%20r%3D%224.6%22%2F%3E%3Cpath%20d%3D%22M40.3%2025.6%20L47.7%2030.7%20L50.3%2027.3%20L43.7%2021.4Z%22%2F%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2223.5%22%20r%3D%222.7%22%2F%3E%3Ccircle%20cx%3D%2249%22%20cy%3D%2229%22%20r%3D%222.1%22%2F%3E%3Cpath%20d%3D%22M50.4%2030.5%20L56.7%2024.2%20L54.3%2021.8%20L47.6%2027.5Z%22%2F%3E%3Ccircle%20cx%3D%2249%22%20cy%3D%2229%22%20r%3D%222.1%22%2F%3E%3Ccircle%20cx%3D%2255.5%22%20cy%3D%2223%22%20r%3D%221.7%22%2F%3E%3Ccircle%20cx%3D%2256.3%22%20cy%3D%2222.2%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22M39.6%2021.9%20L30.7%2024.0%20L31.3%2028.0%20L40.4%2027.1Z%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2224.5%22%20r%3D%222.6%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2226%22%20r%3D%222.0%22%2F%3E%3Cpath%20d%3D%22M29.3%2024.9%20L24.7%2032.6%20L27.3%2034.4%20L32.7%2027.1Z%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2226%22%20r%3D%222.0%22%2F%3E%3Ccircle%20cx%3D%2226%22%20cy%3D%2233.5%22%20r%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2225.3%22%20cy%3D%2234.6%22%20r%3D%221.9%22%2F%3E%3Cpath%20d%3D%22M30.5%2041.3%20L43.4%2045.2%20L45.6%2039.8%20L33.5%2033.7Z%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2237.5%22%20r%3D%224.1%22%2F%3E%3Ccircle%20cx%3D%2244.5%22%20cy%3D%2242.5%22%20r%3D%222.9%22%2F%3E%3Cpath%20d%3D%22M41.7%2041.7%20L39.0%2056.1%20L42.0%2056.9%20L47.3%2043.3Z%22%2F%3E%3Ccircle%20cx%3D%2244.5%22%20cy%3D%2242.5%22%20r%3D%222.9%22%2F%3E%3Ccircle%20cx%3D%2240.5%22%20cy%3D%2256.5%22%20r%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M38.8%2056%20L47.5%2057%20C49.4%2057.4%2049.4%2059.8%2047.2%2060%20L37.6%2059.5%20C36.4%2059%2036.8%2056.6%2038.8%2056Z%22%2F%3E%3Cpath%20d%3D%22M27.3%2036.1%20L20.3%2047.3%20L24.7%2050.7%20L33.7%2040.9Z%22%2F%3E%3Ccircle%20cx%3D%2230.5%22%20cy%3D%2238.5%22%20r%3D%224.0%22%2F%3E%3Ccircle%20cx%3D%2222.5%22%20cy%3D%2249%22%20r%3D%222.8%22%2F%3E%3Cpath%20d%3D%22M23.5%2046.4%20L11.6%2043.0%20L10.4%2046.0%20L21.5%2051.6Z%22%2F%3E%3Ccircle%20cx%3D%2222.5%22%20cy%3D%2249%22%20r%3D%222.8%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2244.5%22%20r%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M11.4%2042.8%20L7.4%2040.4%20C6.2%2039.6%206.7%2037.9%208.3%2038.3%20L14%2040.6%20C15.2%2041.4%2014%2044%2011.4%2042.8Z%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M57%206C57.3%209%2058.7%2010.3%2062%2011C58.7%2011.7%2057.3%2013%2057%2016C56.7%2013%2055.3%2011.7%2052%2011C55.3%2010.3%2056.7%209%2057%206z%22%20fill%3D%22%23facc15%22%2F%3E%3C%2Fsvg%3E">
+<style>
+  :root {
+    --bg: #eef2f6; --panel: #ffffff; --ink: #1c2733; --muted: #66768a;
+    --line: #d5dde6; --accent: #1f5fbf; --accent-ink: #ffffff; --out: #f4f8fd; --err: #b3261e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #11161c; --panel: #1a222b; --ink: #e8eef5; --muted: #93a3b5;
+      --line: #2c3845; --accent: #6aa5ff; --accent-ink: #0d1520; --out: #16202a; --err: #ff8a80; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; line-height: 1.5; }
+  main { max-width: 960px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  .bar { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+  .bar select { flex: 1; }
+  select, input[type=email], textarea, button {
+    font: inherit; color: var(--ink); background: var(--panel);
+    border: 1px solid var(--line); border-radius: 8px; }
+  select, input { padding: 10px 12px; min-width: 0; }
+  button { padding: 9px 14px; cursor: pointer; }
+  button:hover { border-color: var(--accent); }
+  button:focus-visible, select:focus-visible, textarea:focus-visible, input:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px; }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  .panes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 700px) { .panes { grid-template-columns: 1fr; } }
+  .pane { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; display: flex; flex-direction: column; }
+  .pane.out { background: var(--out); }
+  textarea, .result { flex: 1; min-height: 200px; padding: 14px; border: 0; background: transparent;
+    resize: vertical; font-size: 1.05rem; width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .tools { display: flex; gap: 8px; align-items: center; padding: 8px 10px; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+  .tools .spacer { flex: 1; }
+  .tools button { padding: 5px 10px; font-size: .85rem; }
+  .actions { display: flex; gap: 12px; align-items: center; margin-top: 14px; flex-wrap: wrap; }
+  .status { color: var(--muted); font-size: .9rem; }
+  .status.error { color: var(--err); }
+  .key { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); }
+  .key label { display: block; font-size: .9rem; color: var(--muted); margin-bottom: 6px; }
+  .key div { display: flex; gap: 8px; }
+  .key input { flex: 1; }
+  .wave { display: inline-flex; align-items: center; gap: 2px; height: 14px; margin-right: 6px; vertical-align: middle; }
+  .wave i { display: block; width: 3px; height: 5px; border-radius: 2px; background: currentColor; opacity: .6; }
+  button.playing { border-color: var(--accent); color: var(--accent); }
+  button.playing .wave i { opacity: 1; animation: bounce .9s ease-in-out infinite; }
+  button.playing .wave i:nth-child(2) { animation-delay: .15s; }
+  button.playing .wave i:nth-child(3) { animation-delay: .3s; }
+  button.playing .wave i:nth-child(4) { animation-delay: .45s; }
+  @keyframes bounce { 0%, 100% { height: 4px; } 50% { height: 14px; } }
+  @media (prefers-reduced-motion: reduce) { button.playing .wave i { animation: none; height: 10px; } }
+  .tools { flex-wrap: wrap; }
+  details { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; margin-top: 14px; padding: 10px 14px; }
+  summary { cursor: pointer; font-weight: 600; }
+  ul.list { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; }
+  ul.list li { display: flex; gap: 6px; }
+  ul.list .item { flex: 1; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .empty { color: var(--muted); font-size: .9rem; margin: 10px 0 0; }
+  .note { color: var(--muted); font-size: .82rem; margin-top: 22px; }
+  .placeholder { color: var(--muted); }
+
+  /* ---- product polish ---- */
+  .top { background: var(--panel); border-bottom: 1px solid var(--line); }
+  .top > div { max-width: 1000px; margin: 0 auto; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+  .logo { width: 36px; height: 36px; border-radius: 10px; background: var(--accent); color: var(--accent-ink);
+    display: grid; place-items: center; font-weight: 700; font-size: .9rem; }
+  .brand { font-weight: 700; font-size: 1.15rem; letter-spacing: .2px; }
+  .tag { color: var(--muted); font-size: .9rem; margin-left: auto; }
+  @media (max-width: 560px) { .tag { display: none; } }
+  main { max-width: 1000px; padding-top: 24px; }
+  .hero { font-size: 1.5rem; margin: 0 0 16px; font-weight: 700; }
+  .bar { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 8px; }
+  .bar select { border: 0; background: transparent; font-weight: 600; font-size: 1rem; cursor: pointer; }
+  #swap { border-radius: 50%; width: 40px; height: 40px; padding: 0; font-size: 1.1rem; }
+  .pane { border-radius: 14px; box-shadow: 0 1px 3px rgba(20,40,70,.08), 0 8px 24px rgba(20,40,70,.06);
+    transition: box-shadow .2s, border-color .2s; }
+  .pane:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
+  .tools button { border-color: transparent; background: transparent; color: var(--accent); font-weight: 600; }
+  .tools button:hover { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+  .tools button.primary { background: var(--accent); color: var(--accent-ink); border-radius: 999px; padding: 5px 16px; }
+  #mic.rec { background: #d93025; border-color: #d93025; color: #fff; animation: pulse 1.2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(217,48,37,.5); } 100% { box-shadow: 0 0 0 12px rgba(217,48,37,0); } }
+  #go { padding: 12px 30px; font-size: 1rem; border-radius: 999px; }
+  .status.busy::after { content: ""; display: inline-block; width: 12px; height: 12px; margin-left: 8px;
+    border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%;
+    animation: spin .7s linear infinite; vertical-align: -2px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { #mic.rec, .status.busy::after { animation: none; } }
+
+  /* ---- three-dot menu ---- */
+  .menu-wrap { position: relative; }
+  @media (max-width: 560px) { .menu-wrap { margin-left: auto; } }
+  .menu-btn { width: 40px; height: 40px; padding: 0; border-radius: 50%; border-color: transparent; background: transparent;
+    font-size: 1.4rem; line-height: 1; }
+  .menu-btn:hover, .menu-btn[aria-expanded="true"] { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+  .menu { display: none; position: absolute; right: 0; top: 46px; min-width: 220px; padding: 6px; z-index: 30;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 10px 30px rgba(20,40,70,.18); }
+  .menu.open { display: block; }
+  .menu button { display: block; width: 100%; text-align: left; border: 0; background: transparent; padding: 10px 12px; border-radius: 8px; }
+  .menu button:hover, .menu button:focus-visible { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+  .menu hr { border: 0; border-top: 1px solid var(--line); margin: 6px 0; }
+  dialog { background: var(--panel); color: var(--ink); border: 1px solid var(--line); border-radius: 14px; max-width: 420px; padding: 20px; }
+  dialog::backdrop { background: rgba(0,0,0,.4); }
+  :root[data-theme="light"] { --bg: #eef2f6; --panel: #ffffff; --ink: #1c2733; --muted: #66768a; --line: #d5dde6; --accent: #1f5fbf; --accent-ink: #ffffff; --out: #f4f8fd; --err: #b3261e; }
+  :root[data-theme="dark"] { --bg: #11161c; --panel: #1a222b; --ink: #e8eef5; --muted: #93a3b5; --line: #2c3845; --accent: #6aa5ff; --accent-ink: #0d1520; --out: #16202a; --err: #ff8a80; }
+
+  /* ---- settings dialog ---- */
+  .field { margin: 14px 0; }
+  .field > label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .seg { display: flex; gap: 6px; flex-wrap: wrap; position: relative; }
+  .seg label { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+  .seg input { position: absolute; opacity: 0; pointer-events: none; }
+  .seg label:has(input:checked) { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .seg label:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+  input[type=range] { accent-color: var(--accent); }
+
+
+  /* ---- color themes ---- */
+  :root[data-color="teal"] { --accent: #0e8f7e; --accent-ink: #ffffff; --bg: #f0f7f6; --out: #e3f4f1; }
+  :root[data-color="indigo"] { --accent: #4f46e5; --accent-ink: #ffffff; --bg: #f2f1fb; --out: #e9e8fb; }
+  :root[data-color="orange"] { --accent: #d9500a; --accent-ink: #ffffff; --bg: #fff8f0; --out: #ffeede; }
+  @media (prefers-color-scheme: dark) { :root[data-color="teal"]:not([data-theme="light"]) { --accent: #4fd1bd; --accent-ink: #06201c; --bg: #101a19; --out: #14231f; } }
+  :root[data-color="teal"][data-theme="dark"] { --accent: #4fd1bd; --accent-ink: #06201c; --bg: #101a19; --out: #14231f; }
+  @media (prefers-color-scheme: dark) { :root[data-color="indigo"]:not([data-theme="light"]) { --accent: #8b85ff; --accent-ink: #0f0d33; --bg: #14131f; --out: #191830; } }
+  :root[data-color="indigo"][data-theme="dark"] { --accent: #8b85ff; --accent-ink: #0f0d33; --bg: #14131f; --out: #191830; }
+  @media (prefers-color-scheme: dark) { :root[data-color="orange"]:not([data-theme="light"]) { --accent: #ff8a4c; --accent-ink: #2a1000; --bg: #1c1511; --out: #231a14; } }
+  :root[data-color="orange"][data-theme="dark"] { --accent: #ff8a4c; --accent-ink: #2a1000; --bg: #1c1511; --out: #231a14; }
+  .sw { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 10px 12px; margin-bottom: 8px; border-radius: 12px; }
+  .sw[aria-pressed="true"] { border: 2px solid var(--accent); padding: 9px 11px; }
+  .sw .dot { width: 28px; height: 28px; border-radius: 50%; flex: none; }
+  .sw b { display: block; }
+  .sw small { display: block; color: var(--muted); }
+  /* ---- high contrast mode ---- */
+  :root[data-contrast="high"] { --bg: #ffffff; --panel: #ffffff; --out: #ffffff; --ink: #000000; --muted: #1a1a1a;
+    --line: #000000; --accent: #0030a0; --accent-ink: #ffffff; --err: #8a0000; }
+  @media (prefers-color-scheme: dark) {
+    :root[data-contrast="high"]:not([data-theme="light"]) { --bg: #000000; --panel: #000000; --out: #000000; --ink: #ffffff;
+      --muted: #e6e6e6; --line: #ffffff; --accent: #ffd400; --accent-ink: #000000; --err: #ff9c9c; }
+  }
+  :root[data-contrast="high"][data-theme="dark"] { --bg: #000000; --panel: #000000; --out: #000000; --ink: #ffffff;
+    --muted: #e6e6e6; --line: #ffffff; --accent: #ffd400; --accent-ink: #000000; --err: #ff9c9c; }
+  :root[data-contrast="high"] .pane, :root[data-contrast="high"] .bar, :root[data-contrast="high"] details,
+  :root[data-contrast="high"] button, :root[data-contrast="high"] select, :root[data-contrast="high"] input,
+  :root[data-contrast="high"] .menu, :root[data-contrast="high"] dialog { border-width: 2px; border-color: var(--line); }
+  :root[data-contrast="high"] .tools button { border-color: var(--line); }
+  :root[data-contrast="high"] textarea, :root[data-contrast="high"] .result { font-weight: 500; }
+  :root[data-contrast="high"] :focus-visible { outline-width: 3px; }
+
+  /* ---- live wallpaper ---- */
+  html { background: var(--bg); }
+  body { background: transparent; }
+  #wall { position: fixed; inset: 0; z-index: -1; overflow: hidden; display: none; }
+  .has-wall #wall { display: block; }
+  #wall video, #wall img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #wallDim { position: absolute; inset: 0; background: var(--bg); opacity: var(--dim, .12); }
+  .has-wall .top { background: color-mix(in srgb, var(--panel) var(--pa, 60%), transparent); }
+  .has-wall .pane, .has-wall .bar, .has-wall details { background: color-mix(in srgb, var(--panel) var(--pa, 60%), transparent); }
+  .has-wall .pane.out { background: color-mix(in srgb, var(--out) var(--pa, 60%), transparent); }
+  .has-wall .hero, .has-wall .note { text-shadow: 0 1px 3px color-mix(in srgb, var(--bg) 90%, transparent); }
+  :root[data-contrast="high"] #wallDim { opacity: 1; }
+
+  /* ---- readable text outside the boxes ---- */
+  .has-wall .hero, .has-wall .note, .has-wall .actions .status {
+    background: color-mix(in srgb, var(--panel) 78%, transparent); color: var(--ink);
+    padding: 4px 12px; border-radius: 10px; width: fit-content; max-width: 100%; text-shadow: none; }
+  .has-wall .actions .status:empty { padding: 0; background: none; }
+  .has-wall .status.error { color: var(--err); }
+  .bar select { min-width: 0; text-overflow: ellipsis; }
+  .menu { max-width: calc(100vw - 24px); }
+  .actions .status { overflow-wrap: anywhere; }
+
+  /* ---- background library ---- */
+  #wallPreset { position: absolute; inset: 0; display: none; }
+  #wallDlg { max-width: 540px; width: calc(100vw - 32px); }
+  .bgp { background-size: 300% 300%; animation: drift 20s ease infinite; }
+  @keyframes drift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+  .bgp-aurora { background-image: linear-gradient(120deg, #0f2027, #2c5364, #2bb58f, #7b4397, #0f2027); }
+  .bgp-sunset { background-image: linear-gradient(160deg, #ffb36b, #ff5e62, #8e3b9d, #ff8a5c); }
+  .bgp-ocean { background-image: linear-gradient(135deg, #02203a, #0a66a8, #1fb5c9, #0a4f7f); }
+  .bgp-forest { background-image: linear-gradient(135deg, #0b2b1a, #1e6b3a, #7fb069, #14502c); }
+  .bgp-candy { background-image: linear-gradient(135deg, #ffc2e2, #b8c6ff, #c4f1ff, #ffd9f0); }
+  .bgp-night { background-image: radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent), radial-gradient(1.5px 1.5px at 90px 80px, #cfe0ff, transparent),
+    radial-gradient(2px 2px at 140px 20px, #fff, transparent), linear-gradient(#0b1026, #1b2a5a);
+    background-size: 180px 180px, 180px 180px, 180px 180px, 100% 100%; animation: stars 90s linear infinite; }
+  @keyframes stars { from { background-position: 0 0, 0 0, 0 0, 0 0; } to { background-position: 180px 180px, -180px 180px, 180px -180px, 0 0; } }
+  @media (prefers-reduced-motion: reduce) { .bgp { animation: none !important; } }
+  .lib { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin: 12px 0; }
+  .tile { position: relative; }
+  .tile .pick { display: block; width: 100%; padding: 0; overflow: hidden; border-radius: 12px; text-align: left; }
+  .tile .pick[aria-pressed="true"] { border: 2px solid var(--accent); }
+  .tile .th { display: grid; place-items: center; width: 100%; height: 64px; object-fit: cover; font-size: 1.5rem; color: var(--accent); background-color: var(--out); }
+  .tile .nm { display: block; padding: 4px 8px; font-size: .8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tile .del { position: absolute; top: 4px; right: 4px; width: 24px; height: 24px; padding: 0; border-radius: 50%; background: var(--panel); line-height: 1; }
+
+  /* ---- animated microphone ---- */
+  #mic.mic { position: relative; width: 44px; height: 44px; padding: 0; border-radius: 50%; display: inline-grid; place-items: center; }
+  #mic.mic::before, #mic.mic::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--accent);
+    opacity: 0; pointer-events: none; animation: ring 3s ease-out infinite; }
+  #mic.mic::before { animation-delay: 1.5s; }
+  @keyframes ring { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.8); opacity: 0; } }
+  #mic.mic:hover svg { animation: wiggle .5s ease; }
+  @keyframes wiggle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-12deg); } 75% { transform: rotate(12deg); } }
+  #mic.rec { animation: none; }
+  #mic.rec::before, #mic.rec::after { border-color: #d93025; animation-duration: 1.1s; }
+  #mic.rec::before { animation-delay: .55s; }
+  #mic.rec svg { animation: micbeat .5s ease-in-out infinite alternate; }
+  @keyframes micbeat { from { transform: scale(1); } to { transform: scale(1.25); } }
+  @media (prefers-reduced-motion: reduce) { #mic.mic::before, #mic.mic::after, #mic.mic svg { animation: none !important; } }
+
+  /* ---- larger brand ---- */
+  .brand { font-size: 1.9rem; font-weight: 800; letter-spacing: .3px; line-height: 1; }
+  .logo { width: 46px; height: 46px; font-size: 1.15rem; border-radius: 12px; }
+  .top > div { padding-top: 16px; padding-bottom: 16px; }
+  @media (max-width: 560px) { .brand { font-size: 1.6rem; } .logo { width: 40px; height: 40px; } }
+
+  /* ---- running man logo (no circle or tile around it) ---- */
+  .logo.logo-runner { background: none; color: var(--accent); width: auto; height: auto; border-radius: 0; display: inline-flex; }
+  @media (max-width: 560px) { .logo.logo-runner svg { width: 42px; height: 42px; } }
+
+  /* ---- logo motion, loading runner, brand ---- */
+  .menu-wrap { margin-left: auto; }
+  .brandbox { display: flex; flex-direction: column; gap: 4px; }
+  .brand b { font-weight: 800; color: var(--ink); }
+  .brand .lt { font-weight: 300; color: var(--accent); }
+  .slogan { font-size: .8rem; color: var(--muted); line-height: 1; }
+  @media (max-width: 400px) { .slogan { display: none; } }
+  .speedlines { animation: slide 1s ease-in-out infinite alternate; }
+  @keyframes slide { from { transform: translateX(2px); opacity: .25; } to { transform: translateX(-4px); opacity: .6; } }
+  .spark { transform-box: fill-box; transform-origin: center; animation: twinkle 1.8s ease-in-out infinite; }
+  @keyframes twinkle { 0%, 100% { transform: scale(.7); opacity: .7; } 50% { transform: scale(1.15); opacity: 1; } }
+  .status.busy::after { width: 26px; height: 26px; margin-left: 8px; border: 0; border-radius: 0; vertical-align: -8px;
+    background: var(--accent); -webkit-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cg%20opacity%3D%22.45%22%20stroke%3D%22%23000%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M3%2010h13M0%2017h11M4%2024h9%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M39.1%2019.9%20L28.7%2035.7%20L33.3%2039.3%20L45.9%2025.1Z%22%2F%3E%3Ccircle%20cx%3D%2242.5%22%20cy%3D%2222.5%22%20r%3D%224.3%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2237.5%22%20r%3D%222.9%22%2F%3E%3Cpath%20d%3D%22M43.4%2016.9%20L41.2%2019.8%20L44.8%2022.2%20L46.6%2019.1Z%22%2F%3E%3Ccircle%20cx%3D%2245%22%20cy%3D%2218%22%20r%3D%221.9%22%2F%3E%3Ccircle%20cx%3D%2243%22%20cy%3D%2221%22%20r%3D%222.2%22%2F%3E%3Ccircle%20cx%3D%2247%22%20cy%3D%2212.5%22%20r%3D%224.6%22%2F%3E%3Cpath%20d%3D%22M40.3%2025.6%20L47.7%2030.7%20L50.3%2027.3%20L43.7%2021.4Z%22%2F%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2223.5%22%20r%3D%222.7%22%2F%3E%3Ccircle%20cx%3D%2249%22%20cy%3D%2229%22%20r%3D%222.1%22%2F%3E%3Cpath%20d%3D%22M50.4%2030.5%20L56.7%2024.2%20L54.3%2021.8%20L47.6%2027.5Z%22%2F%3E%3Ccircle%20cx%3D%2249%22%20cy%3D%2229%22%20r%3D%222.1%22%2F%3E%3Ccircle%20cx%3D%2255.5%22%20cy%3D%2223%22%20r%3D%221.7%22%2F%3E%3Ccircle%20cx%3D%2256.3%22%20cy%3D%2222.2%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22M39.6%2021.9%20L30.7%2024.0%20L31.3%2028.0%20L40.4%2027.1Z%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2224.5%22%20r%3D%222.6%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2226%22%20r%3D%222.0%22%2F%3E%3Cpath%20d%3D%22M29.3%2024.9%20L24.7%2032.6%20L27.3%2034.4%20L32.7%2027.1Z%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2226%22%20r%3D%222.0%22%2F%3E%3Ccircle%20cx%3D%2226%22%20cy%3D%2233.5%22%20r%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2225.3%22%20cy%3D%2234.6%22%20r%3D%221.9%22%2F%3E%3Cpath%20d%3D%22M30.5%2041.3%20L43.4%2045.2%20L45.6%2039.8%20L33.5%2033.7Z%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2237.5%22%20r%3D%224.1%22%2F%3E%3Ccircle%20cx%3D%2244.5%22%20cy%3D%2242.5%22%20r%3D%222.9%22%2F%3E%3Cpath%20d%3D%22M41.7%2041.7%20L39.0%2056.1%20L42.0%2056.9%20L47.3%2043.3Z%22%2F%3E%3Ccircle%20cx%3D%2244.5%22%20cy%3D%2242.5%22%20r%3D%222.9%22%2F%3E%3Ccircle%20cx%3D%2240.5%22%20cy%3D%2256.5%22%20r%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M38.8%2056%20L47.5%2057%20C49.4%2057.4%2049.4%2059.8%2047.2%2060%20L37.6%2059.5%20C36.4%2059%2036.8%2056.6%2038.8%2056Z%22%2F%3E%3Cpath%20d%3D%22M27.3%2036.1%20L20.3%2047.3%20L24.7%2050.7%20L33.7%2040.9Z%22%2F%3E%3Ccircle%20cx%3D%2230.5%22%20cy%3D%2238.5%22%20r%3D%224.0%22%2F%3E%3Ccircle%20cx%3D%2222.5%22%20cy%3D%2249%22%20r%3D%222.8%22%2F%3E%3Cpath%20d%3D%22M23.5%2046.4%20L11.6%2043.0%20L10.4%2046.0%20L21.5%2051.6Z%22%2F%3E%3Ccircle%20cx%3D%2222.5%22%20cy%3D%2249%22%20r%3D%222.8%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2244.5%22%20r%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M11.4%2042.8%20L7.4%2040.4%20C6.2%2039.6%206.7%2037.9%208.3%2038.3%20L14%2040.6%20C15.2%2041.4%2014%2044%2011.4%2042.8Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cg%20opacity%3D%22.45%22%20stroke%3D%22%23000%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M3%2010h13M0%2017h11M4%2024h9%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23000%22%3E%3Cpath%20d%3D%22M39.1%2019.9%20L28.7%2035.7%20L33.3%2039.3%20L45.9%2025.1Z%22%2F%3E%3Ccircle%20cx%3D%2242.5%22%20cy%3D%2222.5%22%20r%3D%224.3%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2237.5%22%20r%3D%222.9%22%2F%3E%3Cpath%20d%3D%22M43.4%2016.9%20L41.2%2019.8%20L44.8%2022.2%20L46.6%2019.1Z%22%2F%3E%3Ccircle%20cx%3D%2245%22%20cy%3D%2218%22%20r%3D%221.9%22%2F%3E%3Ccircle%20cx%3D%2243%22%20cy%3D%2221%22%20r%3D%222.2%22%2F%3E%3Ccircle%20cx%3D%2247%22%20cy%3D%2212.5%22%20r%3D%224.6%22%2F%3E%3Cpath%20d%3D%22M40.3%2025.6%20L47.7%2030.7%20L50.3%2027.3%20L43.7%2021.4Z%22%2F%3E%3Ccircle%20cx%3D%2242%22%20cy%3D%2223.5%22%20r%3D%222.7%22%2F%3E%3Ccircle%20cx%3D%2249%22%20cy%3D%2229%22%20r%3D%222.1%22%2F%3E%3Cpath%20d%3D%22M50.4%2030.5%20L56.7%2024.2%20L54.3%2021.8%20L47.6%2027.5Z%22%2F%3E%3Ccircle%20cx%3D%2249%22%20cy%3D%2229%22%20r%3D%222.1%22%2F%3E%3Ccircle%20cx%3D%2255.5%22%20cy%3D%2223%22%20r%3D%221.7%22%2F%3E%3Ccircle%20cx%3D%2256.3%22%20cy%3D%2222.2%22%20r%3D%222%22%2F%3E%3Cpath%20d%3D%22M39.6%2021.9%20L30.7%2024.0%20L31.3%2028.0%20L40.4%2027.1Z%22%2F%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2224.5%22%20r%3D%222.6%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2226%22%20r%3D%222.0%22%2F%3E%3Cpath%20d%3D%22M29.3%2024.9%20L24.7%2032.6%20L27.3%2034.4%20L32.7%2027.1Z%22%2F%3E%3Ccircle%20cx%3D%2231%22%20cy%3D%2226%22%20r%3D%222.0%22%2F%3E%3Ccircle%20cx%3D%2226%22%20cy%3D%2233.5%22%20r%3D%221.6%22%2F%3E%3Ccircle%20cx%3D%2225.3%22%20cy%3D%2234.6%22%20r%3D%221.9%22%2F%3E%3Cpath%20d%3D%22M30.5%2041.3%20L43.4%2045.2%20L45.6%2039.8%20L33.5%2033.7Z%22%2F%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2237.5%22%20r%3D%224.1%22%2F%3E%3Ccircle%20cx%3D%2244.5%22%20cy%3D%2242.5%22%20r%3D%222.9%22%2F%3E%3Cpath%20d%3D%22M41.7%2041.7%20L39.0%2056.1%20L42.0%2056.9%20L47.3%2043.3Z%22%2F%3E%3Ccircle%20cx%3D%2244.5%22%20cy%3D%2242.5%22%20r%3D%222.9%22%2F%3E%3Ccircle%20cx%3D%2240.5%22%20cy%3D%2256.5%22%20r%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M38.8%2056%20L47.5%2057%20C49.4%2057.4%2049.4%2059.8%2047.2%2060%20L37.6%2059.5%20C36.4%2059%2036.8%2056.6%2038.8%2056Z%22%2F%3E%3Cpath%20d%3D%22M27.3%2036.1%20L20.3%2047.3%20L24.7%2050.7%20L33.7%2040.9Z%22%2F%3E%3Ccircle%20cx%3D%2230.5%22%20cy%3D%2238.5%22%20r%3D%224.0%22%2F%3E%3Ccircle%20cx%3D%2222.5%22%20cy%3D%2249%22%20r%3D%222.8%22%2F%3E%3Cpath%20d%3D%22M23.5%2046.4%20L11.6%2043.0%20L10.4%2046.0%20L21.5%2051.6Z%22%2F%3E%3Ccircle%20cx%3D%2222.5%22%20cy%3D%2249%22%20r%3D%222.8%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2244.5%22%20r%3D%221.6%22%2F%3E%3Cpath%20d%3D%22M11.4%2042.8%20L7.4%2040.4%20C6.2%2039.6%206.7%2037.9%208.3%2038.3%20L14%2040.6%20C15.2%2041.4%2014%2044%2011.4%2042.8Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center / contain no-repeat; animation: runbob .35s ease-in-out infinite alternate; }
+  @keyframes runbob { from { transform: translateY(2px) rotate(-4deg); } to { transform: translateY(-3px) rotate(4deg); } }
+  @media (prefers-reduced-motion: reduce) { .speedlines, .spark { animation: none; } }
+
+</style>
+</head>
+<body>
+<div id="wall" aria-hidden="true"><video id="wallVid" muted loop playsinline autoplay></video><img id="wallImg" alt=""><div id="wallPreset"></div><div id="wallDim"></div></div>
+<header class="top"><div>
+  <span class="logo logo-runner" aria-hidden="true"><svg viewBox="0 0 64 64" width="62" height="62" aria-hidden="true"><g class="speedlines" opacity=".45" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" fill="none"><path d="M3 10h13M0 17h11M4 24h9"/></g><g fill="currentColor"><path d="M39.1 19.9 L28.7 35.7 L33.3 39.3 L45.9 25.1Z"/><circle cx="42.5" cy="22.5" r="4.3"/><circle cx="31" cy="37.5" r="2.9"/><path d="M43.4 16.9 L41.2 19.8 L44.8 22.2 L46.6 19.1Z"/><circle cx="45" cy="18" r="1.9"/><circle cx="43" cy="21" r="2.2"/><circle cx="47" cy="12.5" r="4.6"/><path d="M40.3 25.6 L47.7 30.7 L50.3 27.3 L43.7 21.4Z"/><circle cx="42" cy="23.5" r="2.7"/><circle cx="49" cy="29" r="2.1"/><path d="M50.4 30.5 L56.7 24.2 L54.3 21.8 L47.6 27.5Z"/><circle cx="49" cy="29" r="2.1"/><circle cx="55.5" cy="23" r="1.7"/><circle cx="56.3" cy="22.2" r="2"/><path d="M39.6 21.9 L30.7 24.0 L31.3 28.0 L40.4 27.1Z"/><circle cx="40" cy="24.5" r="2.6"/><circle cx="31" cy="26" r="2.0"/><path d="M29.3 24.9 L24.7 32.6 L27.3 34.4 L32.7 27.1Z"/><circle cx="31" cy="26" r="2.0"/><circle cx="26" cy="33.5" r="1.6"/><circle cx="25.3" cy="34.6" r="1.9"/><path d="M30.5 41.3 L43.4 45.2 L45.6 39.8 L33.5 33.7Z"/><circle cx="32" cy="37.5" r="4.1"/><circle cx="44.5" cy="42.5" r="2.9"/><path d="M41.7 41.7 L39.0 56.1 L42.0 56.9 L47.3 43.3Z"/><circle cx="44.5" cy="42.5" r="2.9"/><circle cx="40.5" cy="56.5" r="1.6"/><path d="M38.8 56 L47.5 57 C49.4 57.4 49.4 59.8 47.2 60 L37.6 59.5 C36.4 59 36.8 56.6 38.8 56Z"/><path d="M27.3 36.1 L20.3 47.3 L24.7 50.7 L33.7 40.9Z"/><circle cx="30.5" cy="38.5" r="4.0"/><circle cx="22.5" cy="49" r="2.8"/><path d="M23.5 46.4 L11.6 43.0 L10.4 46.0 L21.5 51.6Z"/><circle cx="22.5" cy="49" r="2.8"/><circle cx="11" cy="44.5" r="1.6"/><path d="M11.4 42.8 L7.4 40.4 C6.2 39.6 6.7 37.9 8.3 38.3 L14 40.6 C15.2 41.4 14 44 11.4 42.8Z"/></g><path class="spark" d="M57 6C57.3 9 58.7 10.3 62 11C58.7 11.7 57.3 13 57 16C56.7 13 55.3 11.7 52 11C55.3 10.3 56.7 9 57 6z" fill="#facc15"/></svg></span>
+  <span class="brandbox"><span class="brand"><b>Fast</b><span class="lt">Light</span></span><span class="slogan">Translate at the speed of light</span></span>
+  <span class="menu-wrap">
+    <button id="menuBtn" class="menu-btn" aria-label="More options" aria-haspopup="true" aria-expanded="false">&#8942;</button>
+    <span class="menu" id="menu" role="menu">
+      <button role="menuitem" data-act="theme" id="themeItem">Switch to dark mode</button>
+      <button role="menuitem" data-act="colors" id="colorItem">Color theme: Trust blue</button>
+      <button role="menuitem" data-act="wall" id="wallItem">Background: None</button>
+      <button role="menuitem" data-act="contrast" id="contrastItem">High contrast: Off</button>
+      <button role="menuitem" data-act="settings">Settings</button>
+      <button role="menuitem" data-act="history">History</button>
+      <button role="menuitem" data-act="saved">Saved phrases</button>
+      <button role="menuitem" data-act="clear">Clear history</button>
+      <button role="menuitem" data-act="export">Export history</button>
+      <hr>
+      <button role="menuitem" data-act="report">Report a problem</button>
+      <button role="menuitem" data-act="help">Help &amp; privacy</button>
+    </span>
+  </span>
+</div></header>
+<dialog id="wallDlg">
+  <h3 style="margin-top:0">Background library</h3>
+  <p>Pick a background, or add your own videos and images. Your files stay on this device.</p>
+  <div class="lib" id="lib"></div>
+  <input type="file" id="wallFile" accept="video/*,image/*" multiple hidden>
+  <div class="field"><label for="dim">Dim for readability: <output id="dimOut">12%</output></label>
+    <input type="range" id="dim" min="0" max="0.9" step="0.05" value="0.12" style="width:100%"></div>
+  <div class="field"><label for="pa">Panel opacity: <output id="paOut">60%</output></label>
+    <input type="range" id="pa" min="30" max="100" step="5" value="60" style="width:100%"></div>
+  <p id="wallMsg" class="status" role="status"></p>
+  <div style="display:flex"><button id="wallClose" class="primary" style="margin-left:auto">Done</button></div>
+</dialog>
+<dialog id="colors">
+  <h3 style="margin-top:0">Color theme</h3>
+  <div id="swatches"></div>
+  <button id="colorsClose" class="primary">Done</button>
+</dialog>
+<dialog id="settings">
+  <h3 style="margin-top:0">Settings</h3>
+  <div class="field"><label id="sizeLabel">Text size</label>
+    <div class="seg" role="radiogroup" aria-labelledby="sizeLabel">
+      <label><input type="radio" name="size" value="small"> Small</label>
+      <label><input type="radio" name="size" value="medium"> Medium</label>
+      <label><input type="radio" name="size" value="large"> Large</label>
+      <label><input type="radio" name="size" value="xlarge"> Extra large</label>
+    </div></div>
+  <div class="field"><label for="voiceSel" id="voiceLabel">Voice</label><select id="voiceSel" style="width:100%"></select></div>
+  <div class="field"><label for="rate">Speaking speed: <output id="rateOut">1.0×</output></label>
+    <input type="range" id="rate" min="0.5" max="1.5" step="0.1" value="1" style="width:100%"></div>
+  <div class="field"><label for="startMode">When FastLight opens</label>
+    <select id="startMode" style="width:100%"><option value="last">Use the languages I used last</option><option value="fixed">Always start with the pair below</option></select>
+    <div style="display:flex;gap:8px;margin-top:8px"><select id="defSrc" style="flex:1;min-width:0" aria-label="Default source language"></select>
+    <select id="defTgt" style="flex:1;min-width:0" aria-label="Default target language"></select></div></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <button id="testVoice">Test voice</button><button id="resetSet">Reset</button>
+    <button id="setClose" class="primary" style="margin-left:auto">Done</button></div>
+</dialog>
+<dialog id="help">
+  <h3 style="margin-top:0">Help &amp; privacy</h3>
+  <p><b>Shortcuts</b><br>Ctrl + Enter: translate &nbsp;·&nbsp; Esc: close menu</p>
+  <p><b>Voice</b><br>Speak needs Chrome or Edge and a microphone. Listen needs a voice installed for the language.</p>
+  <p><b>Privacy</b><br>Your text is sent to the MyMemory service to be translated. History and saved phrases stay only in this browser.</p>
+  <button id="helpClose" class="primary">Close</button>
+</dialog>
+<main>
+  <h2 class="hero">Translate text and speech instantly</h2>
+
+  <div class="bar">
+    <select id="src" aria-label="Source language"></select>
+    <button id="swap" title="Swap languages" aria-label="Swap languages">⇄</button>
+    <select id="tgt" aria-label="Target language"></select>
+  </div>
+
+  <div class="panes">
+    <div class="pane">
+      <textarea id="input" placeholder="Enter text to translate" maxlength="5000"></textarea>
+      <div class="tools">
+        <button id="mic" class="primary mic" aria-label="Speak to translate" title="Speak to translate"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg></button>
+        <button id="speakIn"><span class="wave"><i></i><i></i><i></i><i></i></span>Listen</button>
+        <span class="spacer"></span>
+        <button id="paste">Paste</button>
+        <span id="count">0 / 5000</span>
+      </div>
+    </div>
+    <div class="pane out">
+      <div class="result" id="output" aria-live="polite"><span class="placeholder">Translation appears here</span></div>
+      <div class="tools">
+        <button id="speakOut"><span class="wave"><i></i><i></i><i></i><i></i></span>Listen</button>
+        <button id="copy">Copy</button>
+        <button id="star">Save</button>
+        <button id="share">Share</button>
+        <button id="report">Report</button>
+        <span class="spacer"></span>
+        <span id="detected"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="primary" id="go">Translate</button>
+    <button id="clear">Clear</button>
+    <label class="status"><input type="checkbox" id="instant" checked> Instant translate</label>
+    <label class="status"><input type="checkbox" id="autoPlay"> Read translation aloud</label>
+    <select id="qVoice" aria-label="Voice for the translation" style="max-width:230px"></select>
+    <select id="qSpeed" aria-label="Speaking speed"><option value="0.6">Speed: Slow</option><option value="0.8">Speed: Relaxed</option><option value="1">Speed: Normal</option><option value="1.2">Speed: Fast</option><option value="1.4">Speed: Faster</option></select>
+    <span class="status" id="status"></span>
+  </div>
+
+  <details id="histBox"><summary>History</summary><ul class="list" id="histList"></ul>
+    <p style="margin:10px 0 0"><button id="clearHist">Clear history</button></p></details>
+  <details id="favBox"><summary>Saved phrases</summary><ul class="list" id="favList"></ul></details>
+
+  <p class="note">Privacy: your text is sent to the MyMemory service to be translated. History and saved phrases stay only in this browser and can be cleared at any time.</p>
+  <p class="note">© 2026 FastLight · Translations powered by MyMemory · Voice by your browser</p>
+</main>
+
+<script>
+const LANGS = {"auto": "Detect language", "af": "Afrikaans", "sq": "Albanian", "am": "Amharic", "ar": "Arabic", "hy": "Armenian", "as": "Assamese", "az": "Azerbaijani", "eu": "Basque", "be": "Belarusian", "bn": "Bengali", "bs": "Bosnian", "bg": "Bulgarian", "my": "Burmese", "ca": "Catalan", "ceb": "Cebuano", "ny": "Chichewa", "zh-CN": "Chinese (Simplified)", "zh-TW": "Chinese (Traditional)", "co": "Corsican", "hr": "Croatian", "cs": "Czech", "da": "Danish", "nl": "Dutch", "en": "English", "eo": "Esperanto", "et": "Estonian", "tl": "Filipino", "fi": "Finnish", "fr": "French", "fy": "Frisian", "gl": "Galician", "ka": "Georgian", "de": "German", "el": "Greek", "gu": "Gujarati", "ht": "Haitian Creole", "ha": "Hausa", "haw": "Hawaiian", "he": "Hebrew", "hi": "Hindi", "hmn": "Hmong", "hu": "Hungarian", "is": "Icelandic", "ig": "Igbo", "id": "Indonesian", "ga": "Irish", "it": "Italian", "ja": "Japanese", "jv": "Javanese", "kn": "Kannada", "kk": "Kazakh", "km": "Khmer", "rw": "Kinyarwanda", "ko": "Korean", "ku": "Kurdish", "ky": "Kyrgyz", "lo": "Lao", "la": "Latin", "lv": "Latvian", "lt": "Lithuanian", "lb": "Luxembourgish", "mk": "Macedonian", "mg": "Malagasy", "ms": "Malay", "ml": "Malayalam", "mt": "Maltese", "mi": "Maori", "mr": "Marathi", "mn": "Mongolian", "ne": "Nepali", "no": "Norwegian", "or": "Odia", "ps": "Pashto", "fa": "Persian", "pl": "Polish", "pt": "Portuguese", "pa": "Punjabi", "ro": "Romanian", "ru": "Russian", "sm": "Samoan", "sa": "Sanskrit", "gd": "Scots Gaelic", "sr": "Serbian", "st": "Sesotho", "sn": "Shona", "sd": "Sindhi", "si": "Sinhala", "sk": "Slovak", "sl": "Slovenian", "so": "Somali", "es": "Spanish", "su": "Sundanese", "sw": "Swahili", "sv": "Swedish", "tg": "Tajik", "ta": "Tamil", "tt": "Tatar", "te": "Telugu", "th": "Thai", "tr": "Turkish", "tk": "Turkmen", "uk": "Ukrainian", "ur": "Urdu", "ug": "Uyghur", "uz": "Uzbek", "vi": "Vietnamese", "cy": "Welsh", "xh": "Xhosa", "yi": "Yiddish", "yo": "Yoruba", "zu": "Zulu"};
+// BCP-47 tags for text-to-speech
+const VOICE = {"en": "en-US", "hi": "hi-IN", "bn": "bn-IN", "ta": "ta-IN", "te": "te-IN", "mr": "mr-IN", "gu": "gu-IN", "ur": "ur-PK", "es": "es-ES", "fr": "fr-FR", "de": "de-DE", "it": "it-IT", "pt": "pt-PT", "ru": "ru-RU", "ar": "ar-SA", "zh-CN": "zh-CN", "zh-TW": "zh-TW", "ja": "ja-JP", "ko": "ko-KR", "tr": "tr-TR", "nl": "nl-NL", "id": "id-ID", "pa": "pa-IN", "kn": "kn-IN", "ml": "ml-IN", "ne": "ne-NP", "fa": "fa-IR", "he": "he-IL", "el": "el-GR", "sv": "sv-SE", "no": "nb-NO", "da": "da-DK", "fi": "fi-FI", "cs": "cs-CZ", "pl": "pl-PL", "uk": "uk-UA", "th": "th-TH", "vi": "vi-VN", "hu": "hu-HU", "ro": "ro-RO", "sk": "sk-SK", "bg": "bg-BG", "hr": "hr-HR", "sw": "sw-KE", "ms": "ms-MY", "tl": "fil-PH", "si": "si-LK", "ca": "ca-ES", "af": "af-ZA", "sq": "sq-AL", "am": "am-ET"};
+
+const $ = id => document.getElementById(id);
+const src = $("src"), tgt = $("tgt"), input = $("input"), output = $("output"), status = $("status");
+let lastTranslation = "", lastTargetLang = "en", lastSourceLang = "en";
+
+const POPULAR = ["en","hi","bn","ta","te","mr","gu","ur","es","fr","de","it","pt","ru","ar","zh-CN","ja","ko","tr","nl","id"];
+function buildSelect(sel, withAuto) {
+  if (withAuto) sel.add(new Option(LANGS.auto, "auto"));
+  const g1 = document.createElement("optgroup"); g1.label = "Popular";
+  const g2 = document.createElement("optgroup"); g2.label = "All languages (A–Z)";
+  POPULAR.forEach(c => g1.append(new Option(LANGS[c], c)));
+  Object.keys(LANGS).filter(c => c !== "auto").sort((a, b) => LANGS[a].localeCompare(LANGS[b]))
+    .forEach(c => g2.append(new Option(LANGS[c], c)));
+  sel.append(g1, g2);
+}
+buildSelect(src, true); buildSelect(tgt, false);
+src.value = "auto"; tgt.value = "hi";
+
+function setStatus(msg, isError) { status.textContent = msg; status.className = "status" + (isError ? " error" : "") + (msg === "Translating…" ? " busy" : ""); }
+input.addEventListener("input", () => $("count").textContent = input.value.length + " / 5000");
+
+// MyMemory accepts at most ~500 bytes per request, so long text is split into chunks
+function chunk(text, max = 400) {
+  const parts = text.match(/[^.!?\u0964\n]+[.!?\u0964\n]*/g) || [text];
+  const out = []; let cur = "";
+  for (let p of parts) {
+    while (p.length > max) { if (cur) { out.push(cur); cur = ""; } out.push(p.slice(0, max)); p = p.slice(max); }
+    if ((cur + p).length > max) { out.push(cur); cur = p; } else cur += p;
+  }
+  if (cur.trim()) out.push(cur);
+  return out;
+}
+
+async function translateChunk(q) {
+  const from = src.value === "auto" ? "Autodetect" : src.value;
+  const url = "https://api.mymemory.translated.net/get?q=" + encodeURIComponent(q) +
+              "&langpair=" + encodeURIComponent(from + "|" + tgt.value);
+  let res;
+  try { res = await fetch(url); }
+  catch (e) { throw new Error("Cannot reach the translation service. Check your internet connection."); }
+  let data = {}; try { data = await res.json(); } catch (e) {}
+  const t = data.responseData && data.responseData.translatedText;
+  if (data.responseStatus != 200 || !t) throw new Error(data.responseDetails || "Request failed");
+  if (/MYMEMORY WARNING/i.test(t)) throw new Error("Free daily limit reached. Try again tomorrow.");
+  return { text: t, detected: data.responseData.detectedLanguage };
+}
+
+let reqId = 0;
+async function translate() {
+  const id = ++reqId;
+  const text = input.value.trim();
+  if (!text) return setStatus("Enter some text to translate.", true);
+  if (src.value !== "auto" && src.value === tgt.value) return setStatus("Choose two different languages.", true);
+
+  $("go").disabled = true; setStatus("Translating…"); $("detected").textContent = "";
+  try {
+    const pieces = chunk(text), results = []; let detected = "";
+    for (const p of pieces) {
+      const r = await translateChunk(p);
+      if (id !== reqId) return;
+      results.push(r.text); detected = detected || r.detected || "";
+    }
+    lastTranslation = decodeEntities(results.join(" ").trim());
+    lastTargetLang = tgt.value;
+    lastSourceLang = detected ? normLang(detected) : src.value;
+    output.textContent = lastTranslation;
+    if (detected) $("detected").textContent = "Detected: " + (LANGS[lastSourceLang] || detected);
+    setStatus("Done."); onDone(text);
+  } catch (err) {
+    if (id === reqId) setStatus("Translation failed: " + err.message, true);
+  } finally { if (id === reqId) $("go").disabled = false; }
+}
+
+function normLang(d) {
+  d = d.replace("_", "-"); if (LANGS[d]) return d;
+  const base = d.split("-")[0].toLowerCase();
+  return LANGS[base] ? base : (base === "zh" ? "zh-CN" : base);
+}
+function decodeEntities(s) { const d = document.createElement("textarea"); d.innerHTML = s; return d.value; }
+
+function getVoices() {
+  return new Promise(resolve => {
+    const v = speechSynthesis.getVoices();
+    if (v.length) return resolve(v);
+    speechSynthesis.onvoiceschanged = () => resolve(speechSynthesis.getVoices());
+    setTimeout(() => resolve(speechSynthesis.getVoices()), 1500);
+  });
+}
+
+let speakId = 0;
+function stopWaves() { document.querySelectorAll("button.playing").forEach(b => b.classList.remove("playing")); }
+
+async function speak(text, lang, btn) {
+  if (btn && btn.classList.contains("playing")) { speakId++; speechSynthesis.cancel(); stopWaves(); setStatus(""); return; }
+  if (!text) return setStatus("Nothing to read yet.", true);
+  if (!("speechSynthesis" in window)) return setStatus("Text-to-speech is not supported in this browser. Try Microsoft Edge or Chrome.", true);
+  speechSynthesis.cancel(); stopWaves();
+  const tag = VOICE[lang] || lang;
+  const voices = await getVoices();
+  const chosen = voices.find(v => v.voiceURI === settings.voices[lang]);
+  const voice = chosen || voices.find(v => v.lang.replace("_", "-").toLowerCase() === tag.toLowerCase())
+             || voices.find(v => v.lang.toLowerCase().startsWith(tag.split("-")[0].toLowerCase()));
+  if (!voice) {
+    return setStatus("No " + (LANGS[lang] || "") + " voice is installed on this device. Try Microsoft Edge, or add the voice in Windows Settings > Time & language > Speech.", true);
+  }
+  const u = new SpeechSynthesisUtterance(text);
+  u.voice = voice; u.lang = voice.lang; u.rate = settings.rate;
+  const my = ++speakId;
+  u.onstart = () => { if (my === speakId) { stopWaves(); if (btn) btn.classList.add("playing"); setStatus("Playing…"); } };
+  u.onend = () => { if (my === speakId) { stopWaves(); setStatus(""); } };
+  u.onerror = e => {
+    if (my !== speakId) return;
+    stopWaves();
+    if (e.error !== "canceled" && e.error !== "interrupted") setStatus("Could not play audio: " + e.error, true);
+  };
+  speechSynthesis.speak(u);
+}
+
+// Instant translation: wait until typing pauses, then translate
+let timer = null;
+function live() {
+  clearTimeout(timer);
+  if (listening || !$("instant").checked) return;
+  if (!input.value.trim()) {
+    reqId++; lastTranslation = ""; $("detected").textContent = ""; setStatus("");
+    output.innerHTML = '<span class="placeholder">Translation appears here</span>';
+    return;
+  }
+  timer = setTimeout(translate, 500);
+}
+input.addEventListener("input", live);
+src.addEventListener("change", live);
+tgt.addEventListener("change", live);
+
+async function run() {
+  await translate();
+  if ($("autoPlay").checked && lastTranslation) speak(lastTranslation, lastTargetLang, $("speakOut"));
+}
+$("go").onclick = run;
+input.addEventListener("keydown", e => { if ((e.ctrlKey || e.metaKey) && e.key === "Enter") run(); });
+
+// Speak and translate: microphone -> text -> translation -> (optional) spoken translation
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec = null, listening = false;
+$("mic").onclick = () => {
+  if (!SR) return setStatus("Speech input is not supported in this browser. Use Chrome or Edge.", true);
+  if (listening) { rec.stop(); return; }
+  speechSynthesis.cancel();
+  const code = src.value === "auto" ? "en" : src.value;
+  rec = new SR();
+  rec.lang = VOICE[code] || code;
+  rec.interimResults = true;
+  rec.continuous = false;
+  let heard = "";
+  rec.onstart = () => { listening = true; $("mic").classList.add("rec"); $("mic").title = "Stop listening"; $("mic").setAttribute("aria-label", "Stop listening"); setStatus("Listening in " + LANGS[code] + "… speak now."); };
+  rec.onresult = e => {
+    heard = Array.from(e.results).map(r => r[0].transcript).join(" ");
+    input.value = heard; input.dispatchEvent(new Event("input"));
+  };
+  rec.onerror = e => {
+    const msg = { "not-allowed": "Microphone is blocked. Click the lock icon in the address bar and allow the microphone.",
+      "no-speech": "I did not hear anything. Try again.", "network": "Speech recognition needs an internet connection.",
+      "audio-capture": "No microphone found." }[e.error] || "Speech error: " + e.error;
+    setStatus(msg, true);
+  };
+  rec.onend = async () => {
+    listening = false; $("mic").classList.remove("rec"); $("mic").title = "Speak to translate"; $("mic").setAttribute("aria-label", "Speak to translate");
+    if (heard.trim()) await run();
+  };
+  try { rec.start(); } catch (err) { setStatus("Could not start the microphone.", true); }
+};
+$("speakIn").onclick = () => speak(input.value, src.value === "auto" ? lastSourceLang : src.value, $("speakIn"));
+$("speakOut").onclick = () => speak(lastTranslation, lastTargetLang, $("speakOut"));
+$("copy").onclick = async () => {
+  if (!lastTranslation) return setStatus("Nothing to copy yet.", true);
+  try { await navigator.clipboard.writeText(lastTranslation); setStatus("Copied to clipboard."); }
+  catch (e) { setStatus("Copy failed. Select the text and copy it manually.", true); }
+};
+$("swap").onclick = () => {
+  const from = src.value === "auto" ? lastSourceLang : src.value;
+  const to = tgt.value;
+  src.value = to; tgt.value = LANGS[from] && from !== "auto" ? from : "en";
+  if (lastTranslation) { input.value = lastTranslation; input.dispatchEvent(new Event("input")); }
+  lastTranslation = ""; output.innerHTML = '<span class="placeholder">Translation appears here</span>';
+};
+$("clear").onclick = () => {
+  input.value = ""; input.dispatchEvent(new Event("input")); lastTranslation = "";
+  output.innerHTML = '<span class="placeholder">Translation appears here</span>';
+  $("detected").textContent = ""; setStatus(""); speechSynthesis.cancel(); stopWaves();
+};
+
+// ---------- Extra features ----------
+const REPORT_EMAIL = "your-email@example.com"; // change this to your own email
+const RTL = ["ar", "ur", "he", "fa", "ps", "ug", "sd", "yi"];
+function applyDir() {
+  input.dir = RTL.includes(src.value === "auto" ? lastSourceLang : src.value) ? "rtl" : "ltr";
+  output.dir = RTL.includes(lastTargetLang) ? "rtl" : "ltr";
+}
+src.addEventListener("change", applyDir);
+tgt.addEventListener("change", () => { lastTargetLang = tgt.value; applyDir(); });
+
+
+// paste / share / report
+$("paste").onclick = async () => {
+  try { input.value = await navigator.clipboard.readText(); input.dispatchEvent(new Event("input")); }
+  catch (e) { setStatus("Could not paste. Click the box and press Ctrl+V instead.", true); }
+};
+$("share").onclick = async () => {
+  if (!lastTranslation) return setStatus("Nothing to share yet.", true);
+  try {
+    if (navigator.share) await navigator.share({ text: lastTranslation });
+    else window.open("https://wa.me/?text=" + encodeURIComponent(lastTranslation), "_blank");
+  } catch (e) { /* share cancelled */ }
+};
+$("report").onclick = () => {
+  if (!lastTranslation) return setStatus("Translate something first, then report it.", true);
+  const body = "Original (" + (LANGS[lastSourceLang] || lastSourceLang) + "):\n" + input.value +
+               "\n\nTranslation (" + LANGS[lastTargetLang] + "):\n" + lastTranslation + "\n\nWhat is wrong:\n";
+  window.location.href = "mailto:" + REPORT_EMAIL + "?subject=" + encodeURIComponent("Wrong translation") + "&body=" + encodeURIComponent(body);
+};
+
+// history + saved phrases (browser storage)
+const load = k => { try { return JSON.parse(localStorage.getItem(k)) || []; } catch (e) { return []; } };
+const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+let histTimer = null;
+
+function onDone(text) {
+  applyDir();
+  clearTimeout(histTimer);
+  const entry = { s: text, t: lastTranslation, sl: lastSourceLang, tl: lastTargetLang };
+  histTimer = setTimeout(() => {          // save only after typing has paused
+    const h = load("tr_history").filter(x => !(x.s === entry.s && x.tl === entry.tl));
+    h.unshift(entry); save("tr_history", h.slice(0, 20)); renderLists();
+  }, 2000);
+}
+
+function reuse(x) {
+  input.value = x.s; $("count").textContent = x.s.length + " / 5000";
+  if (LANGS[x.sl] && x.sl !== "auto") src.value = x.sl;
+  tgt.value = x.tl; lastSourceLang = x.sl; lastTargetLang = x.tl; lastTranslation = x.t;
+  output.textContent = x.t; applyDir(); window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function fill(listEl, items, key, removable) {
+  listEl.innerHTML = "";
+  if (!items.length) { const p = document.createElement("li"); p.className = "empty"; p.textContent = "Nothing here yet."; listEl.append(p); return; }
+  items.forEach((x, i) => {
+    const li = document.createElement("li");
+    const b = document.createElement("button"); b.className = "item";
+    b.textContent = x.s + "  →  " + x.t; b.title = x.s + " → " + x.t; b.onclick = () => reuse(x);
+    li.append(b);
+    if (removable) {
+      const d = document.createElement("button"); d.textContent = "✕"; d.setAttribute("aria-label", "Remove");
+      d.onclick = () => { const a = load(key); a.splice(i, 1); save(key, a); renderLists(); };
+      li.append(d);
+    }
+    listEl.append(li);
+  });
+}
+function renderLists() { fill($("histList"), load("tr_history"), "tr_history", false); fill($("favList"), load("tr_favs"), "tr_favs", true); }
+
+$("star").onclick = () => {
+  if (!lastTranslation) return setStatus("Translate something first.", true);
+  const f = load("tr_favs");
+  if (f.some(x => x.s === input.value.trim() && x.tl === lastTargetLang)) return setStatus("Already saved.");
+  f.unshift({ s: input.value.trim(), t: lastTranslation, sl: lastSourceLang, tl: lastTargetLang });
+  save("tr_favs", f.slice(0, 50)); renderLists(); setStatus("Saved to Saved phrases.");
+};
+$("clearHist").onclick = () => { save("tr_history", []); renderLists(); };
+renderLists();
+
+// ---------- Three-dot menu ----------
+const menu = $("menu"), menuBtn = $("menuBtn");
+function closeMenu() { menu.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); }
+menuBtn.onclick = e => {
+  e.stopPropagation();
+  const open = menu.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", String(open));
+  if (open) menu.querySelector("button").focus();
+};
+document.addEventListener("click", e => { if (!menu.contains(e.target)) closeMenu(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") { closeMenu(); menuBtn.focus(); } });
+
+let theme = "system";
+try { theme = localStorage.getItem("tr_theme") || "system"; } catch (e) {}
+const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+const effectiveTheme = () => theme === "system" ? (darkQuery.matches ? "dark" : "light") : theme;
+function applyTheme(t) {
+  theme = t;
+  if (t === "system") document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme", t);
+  $("themeItem").textContent = effectiveTheme() === "dark" ? "Switch to light mode" : "Switch to dark mode";
+}
+darkQuery.addEventListener("change", () => applyTheme(theme));
+applyTheme(theme);
+
+const reveal = box => { $(box).open = true; $(box).scrollIntoView({ behavior: "smooth", block: "center" }); };
+menu.addEventListener("click", e => {
+  const act = e.target.dataset && e.target.dataset.act;
+  if (!act) return;
+  if (act === "contrast") { toggleContrast(); return; }
+  if (act === "theme") {            // switch between dark and light mode
+    applyTheme(effectiveTheme() === "dark" ? "light" : "dark");
+    try { localStorage.setItem("tr_theme", theme); } catch (err) {}
+    return;
+  }
+  closeMenu();
+  if (act === "history") reveal("histBox");
+  if (act === "saved") reveal("favBox");
+  if (act === "clear") { $("clearHist").click(); setStatus("History cleared."); }
+  if (act === "report") $("report").click();
+  if (act === "help") $("help").showModal();
+});
+$("helpClose").onclick = () => $("help").close();
+
+// ---------- Settings: text size + voice ----------
+const SIZES = { small: "87.5%", medium: "100%", large: "115%", xlarge: "130%" };
+const DEFAULTS = { size: "medium", rate: 1, voices: {}, startMode: "last", defSrc: "auto", defTgt: "hi" };
+let settings = { ...DEFAULTS, voices: {} };
+try { Object.assign(settings, JSON.parse(localStorage.getItem("tr_settings")) || {}); } catch (e) {}
+settings.voices = settings.voices || {};
+const saveSettings = () => { try { localStorage.setItem("tr_settings", JSON.stringify(settings)); } catch (e) {} };
+const applySettings = () => { document.documentElement.style.fontSize = SIZES[settings.size] || "100%"; };
+applySettings();
+
+async function fillVoices() {
+  const lang = tgt.value, prefix = (VOICE[lang] || lang).split("-")[0];
+  $("voiceLabel").textContent = "Voice for " + LANGS[lang] + " (current target language)";
+  const sel = $("voiceSel"); sel.innerHTML = "";
+  sel.add(new Option("Automatic (best match)", ""));
+  const list = (await getVoices()).filter(v => v.lang.toLowerCase().startsWith(prefix));
+  list.forEach(v => sel.add(new Option(v.name + " (" + v.lang + ")", v.voiceURI)));
+  if (!list.length) { const o = new Option("No voice installed for this language", "none"); o.disabled = true; sel.add(o); }
+  sel.value = settings.voices[lang] || "";
+}
+function openSettings() {
+  document.querySelector('input[name="size"][value="' + settings.size + '"]').checked = true;
+  $("rate").value = settings.rate; $("rateOut").textContent = Number(settings.rate).toFixed(1) + "×";
+  fillVoices(); $("settings").showModal();
+}
+document.querySelectorAll('input[name="size"]').forEach(r => r.addEventListener("change", () => {
+  settings.size = r.value; applySettings(); saveSettings();
+}));
+$("rate").addEventListener("input", e => {
+  settings.rate = parseFloat(e.target.value); $("rateOut").textContent = settings.rate.toFixed(1) + "×"; saveSettings();
+});
+$("voiceSel").addEventListener("change", e => {
+  if (e.target.value) settings.voices[tgt.value] = e.target.value; else delete settings.voices[tgt.value];
+  saveSettings();
+});
+$("testVoice").onclick = () => speak(lastTranslation || "Hello, this is how I sound.", lastTranslation ? lastTargetLang : "en", null);
+$("resetSet").onclick = () => { settings = { ...DEFAULTS, voices: {} }; saveSettings(); applySettings(); openSettings(); };
+$("setClose").onclick = () => { speechSynthesis.cancel(); $("settings").close(); };
+menu.addEventListener("click", e => { if (e.target.dataset && e.target.dataset.act === "settings") openSettings(); });
+
+// ---------- High contrast mode ----------
+let hc = false;
+try { hc = localStorage.getItem("tr_contrast") === "1"; } catch (e) {}
+function applyContrast() {
+  if (hc) document.documentElement.setAttribute("data-contrast", "high");
+  else document.documentElement.removeAttribute("data-contrast");
+  $("contrastItem").textContent = "High contrast: " + (hc ? "On" : "Off");
+}
+function toggleContrast() {
+  hc = !hc;
+  try { localStorage.setItem("tr_contrast", hc ? "1" : "0"); } catch (e) {}
+  applyContrast();
+}
+applyContrast();
+
+// ---------- Color themes ----------
+const COLORS = [
+  { id: "blue", n: "Trust blue", c: "#1f5fbf", d: "Professional and familiar (default)" },
+  { id: "teal", n: "Fresh teal", c: "#0e8f7e", d: "Friendly, travel-app feel" },
+  { id: "indigo", n: "Indigo", c: "#4f46e5", d: "Modern and stylish" },
+  { id: "orange", n: "Warm orange", c: "#d9500a", d: "Approachable and distinctive" }
+];
+COLORS.forEach(c => {
+  const b = document.createElement("button");
+  b.className = "sw"; b.dataset.color = c.id; b.setAttribute("aria-pressed", "false");
+  const dot = document.createElement("span"); dot.className = "dot"; dot.style.background = c.c;
+  const t = document.createElement("span");
+  const nm = document.createElement("b"); nm.textContent = c.n;
+  const ds = document.createElement("small"); ds.textContent = c.d;
+  t.append(nm, ds); b.append(dot, t);
+  b.onclick = () => { applyColor(c.id); try { localStorage.setItem("tr_color", c.id); } catch (e) {} };
+  $("swatches").append(b);
+});
+function applyColor(id) {
+  const c = COLORS.find(x => x.id === id) || COLORS[0];
+  if (c.id === "blue") document.documentElement.removeAttribute("data-color");
+  else document.documentElement.setAttribute("data-color", c.id);
+  $("colorItem").textContent = "Color theme: " + c.n;
+  document.querySelectorAll(".sw").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.color === c.id)));
+}
+let savedColor = "blue";
+try { savedColor = localStorage.getItem("tr_color") || "blue"; } catch (e) {}
+applyColor(savedColor);
+menu.addEventListener("click", e => { if (e.target.dataset && e.target.dataset.act === "colors") $("colors").showModal(); });
+$("colorsClose").onclick = () => $("colors").close();
+
+// ---------- Background library ----------
+const PRESETS = [{ id: "aurora", n: "Aurora" }, { id: "sunset", n: "Sunset" }, { id: "ocean", n: "Ocean" },
+  { id: "forest", n: "Forest" }, { id: "night", n: "Starry night" }, { id: "candy", n: "Cotton candy" }];
+const wallVid = $("wallVid"), wallImg = $("wallImg"), wallPreset = $("wallPreset"), wallMsg = $("wallMsg");
+const idb = () => new Promise((res, rej) => {
+  const r = indexedDB.open("linguaflow", 1);
+  r.onupgradeneeded = () => r.result.createObjectStore("kv");
+  r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+});
+async function idbDo(mode, fn) {
+  const db = await idb();
+  return new Promise((res, rej) => { const q = fn(db.transaction("kv", mode).objectStore("kv")); q.onsuccess = () => res(q.result); q.onerror = () => rej(q.error); });
+}
+let mine = [], sel = { type: "none", id: "" };
+try { sel = JSON.parse(localStorage.getItem("tr_bg")) || sel; } catch (e) {}
+const say = (m, bad) => { wallMsg.className = "status" + (bad ? " error" : ""); wallMsg.textContent = m; };
+const withUrl = x => ({ ...x, url: URL.createObjectURL(x.blob) });
+
+function applyBg() {
+  wallVid.pause(); wallVid.removeAttribute("src"); wallVid.load();
+  wallImg.removeAttribute("src"); wallVid.style.display = wallImg.style.display = wallPreset.style.display = "none";
+  let name = "None", on = false;
+  if (sel.type === "preset") {
+    const p = PRESETS.find(x => x.id === sel.id);
+    if (p) { wallPreset.className = "bgp bgp-" + p.id; wallPreset.style.display = "block"; name = p.n; on = true; }
+  } else if (sel.type === "mine") {
+    const m = mine.find(x => x.id === sel.id);
+    if (m) {
+      name = m.name; on = true;
+      if (m.blob.type.startsWith("video/")) {
+        wallVid.style.display = "block"; wallVid.src = m.url; wallVid.muted = true;
+        const p = wallVid.play(); if (p && p.catch) p.catch(() => {});
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) wallVid.pause();
+      } else { wallImg.style.display = "block"; wallImg.src = m.url; }
+    }
+  }
+  document.documentElement.classList.toggle("has-wall", on);
+  $("wallItem").textContent = "Background: " + (name.length > 16 ? name.slice(0, 15) + "…" : name);
+  document.querySelectorAll("#lib .pick").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.type === sel.type && (b.dataset.id || "") === sel.id)));
+}
+function choose(type, id) {
+  sel = { type, id }; try { localStorage.setItem("tr_bg", JSON.stringify(sel)); } catch (e) {}
+  applyBg();
+}
+wallVid.onerror = () => { if (wallVid.getAttribute("src")) { choose("none", ""); say("This video format can't be played here. Use MP4 (H.264) or WebM.", true); } };
+
+function tile(type, id, name, thumb, onDelete) {
+  const box = document.createElement("div"); box.className = "tile";
+  const b = document.createElement("button"); b.className = "pick"; b.dataset.type = type; b.dataset.id = id;
+  b.setAttribute("aria-pressed", "false"); b.title = name;
+  const nm = document.createElement("span"); nm.className = "nm"; nm.textContent = name;
+  b.append(thumb, nm); b.onclick = () => choose(type, id); box.append(b);
+  if (onDelete) {
+    const d = document.createElement("button"); d.className = "del"; d.textContent = "✕"; d.setAttribute("aria-label", "Delete " + name);
+    d.onclick = onDelete; box.append(d);
+  }
+  return box;
+}
+function renderLib() {
+  const lib = $("lib"); lib.innerHTML = "";
+  const none = document.createElement("span"); none.className = "th"; none.textContent = "Off";
+  lib.append(tile("none", "", "None", none));
+  PRESETS.forEach(p => { const t = document.createElement("span"); t.className = "th bgp bgp-" + p.id; lib.append(tile("preset", p.id, p.n, t)); });
+  mine.forEach(m => {
+    const isV = m.blob.type.startsWith("video/");
+    const t = document.createElement(isV ? "video" : "img"); t.className = "th";
+    if (isV) { t.muted = true; t.preload = "metadata"; t.playsInline = true; t.src = m.url + "#t=0.5"; } else { t.src = m.url; t.alt = ""; }
+    lib.append(tile("mine", m.id, m.name, t, async () => {
+      URL.revokeObjectURL(m.url); mine = mine.filter(x => x.id !== m.id);
+      try { await idbDo("readwrite", st => st.delete("wp:" + m.id)); } catch (e) {}
+      if (sel.type === "mine" && sel.id === m.id) choose("none", "");
+      renderLib(); applyBg(); say("Removed from your library.");
+    }));
+  });
+  const add = document.createElement("span"); add.className = "th"; add.textContent = "+";
+  const addTile = tile("add", "", "Add yours", add); addTile.querySelector(".pick").removeAttribute("aria-pressed");
+  addTile.querySelector(".pick").onclick = () => $("wallFile").click(); lib.append(addTile);
+  applyBg();
+}
+$("wallFile").onchange = async e => {
+  const files = Array.from(e.target.files); e.target.value = ""; let last = null;
+  for (const f of files) {
+    if (!/^(video|image)\//.test(f.type)) { say("Only videos (MP4, WebM) and images (GIF, JPG, PNG) can be added.", true); continue; }
+    if (mine.length >= 12) { say("Your library is full (12). Delete one first.", true); break; }
+    const id = Date.now() + "-" + mine.length, name = f.name.replace(/\.[^.]+$/, "").slice(0, 24) || "My background";
+    mine.push(withUrl({ id, name, blob: f })); last = id;
+    try { await idbDo("readwrite", st => st.put({ id, name, blob: f }, "wp:" + id)); say("Added to your library."); }
+    catch (err) { say("Added, but it could not be saved for next time.", true); }
+  }
+  renderLib(); if (last) choose("mine", last);
+};
+function setDim(v) { $("wall").style.setProperty("--dim", v); $("dimOut").textContent = Math.round(v * 100) + "%"; $("dim").value = v; }
+let dim = 0.12; try { dim = parseFloat(localStorage.getItem("tr_dim2") ?? "0.12"); } catch (e) {}
+setDim(dim);
+$("dim").addEventListener("input", e => { setDim(e.target.value); try { localStorage.setItem("tr_dim2", e.target.value); } catch (err) {} });
+menu.addEventListener("click", e => { if (e.target.dataset && e.target.dataset.act === "wall") { say(""); $("wallDlg").showModal(); } });
+$("wallClose").onclick = () => $("wallDlg").close();
+renderLib();
+(async () => {
+  try {
+    const all = await idbDo("readonly", st => st.getAll(IDBKeyRange.bound("wp:", "wp:\uffff")));
+    mine = all.map(withUrl);
+    const old = await idbDo("readonly", st => st.get("wall"));      // wallpaper saved by the earlier version
+    if (old) {
+      const x = { id: "legacy", name: "My wallpaper", blob: old };
+      await idbDo("readwrite", st => st.put(x, "wp:legacy")); await idbDo("readwrite", st => st.delete("wall"));
+      mine.push(withUrl(x)); if (sel.type === "none") choose("mine", "legacy");
+    }
+  } catch (e) {}
+  renderLib();
+})();
+
+function setPa(v) { document.documentElement.style.setProperty("--pa", v + "%"); $("paOut").textContent = v + "%"; $("pa").value = v; }
+let pa = 60; try { pa = parseInt(localStorage.getItem("tr_pa") || "60", 10); } catch (e) {}
+setPa(pa);
+$("pa").addEventListener("input", e => { setPa(e.target.value); try { localStorage.setItem("tr_pa", e.target.value); } catch (err) {} });
+
+// ---------- Remember languages, default pair, export ----------
+function saveLangs() { try { localStorage.setItem("tr_langs", JSON.stringify({ s: src.value, t: tgt.value })); } catch (e) {} }
+src.addEventListener("change", saveLangs); tgt.addEventListener("change", saveLangs);
+$("swap").addEventListener("click", () => setTimeout(saveLangs, 0));
+buildSelect($("defSrc"), true); buildSelect($("defTgt"), false);
+const _openSettings = openSettings;
+openSettings = function () {
+  _openSettings();
+  $("startMode").value = settings.startMode; $("defSrc").value = settings.defSrc; $("defTgt").value = settings.defTgt;
+};
+$("startMode").addEventListener("change", e => { settings.startMode = e.target.value; saveSettings(); });
+$("defSrc").addEventListener("change", e => { settings.defSrc = e.target.value; saveSettings(); });
+$("defTgt").addEventListener("change", e => { settings.defTgt = e.target.value; saveSettings(); });
+(function () {
+  let last = {}; try { last = JSON.parse(localStorage.getItem("tr_langs")) || {}; } catch (e) {}
+  const fixed = settings.startMode === "fixed";
+  const s0 = fixed ? settings.defSrc : last.s, t0 = fixed ? settings.defTgt : last.t;
+  const has = (sel, v) => v && Array.from(sel.options).some(o => o.value === v);
+  if (has(src, s0)) src.value = s0;
+  if (has(tgt, t0)) tgt.value = t0;
+  lastTargetLang = tgt.value; applyDir();
+})();
+const _onDone = onDone;
+onDone = function (text) { saveLangs(); _onDone(text); };
+
+menu.addEventListener("click", e => {
+  if (!e.target.dataset || e.target.dataset.act !== "export") return;
+  const h = load("tr_history");
+  if (!h.length) return setStatus("No history to export yet.", true);
+  const q = v => '"' + String(v).replace(/"/g, '""') + '"';
+  const rows = [["Source language", "Target language", "Original", "Translation"].map(q).join(",")]
+    .concat(h.map(x => [LANGS[x.sl] || x.sl, LANGS[x.tl] || x.tl, x.s, x.t].map(q).join(",")));
+  const blob = new Blob(["\ufeff" + rows.join("\r\n")], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "fastlight-history.csv";
+  document.body.append(a); a.click(); a.remove(); setStatus("History exported.");
+});
+
+// ---------- Voice options on the main page ----------
+async function fillQuickVoices() {
+  const lang = tgt.value, prefix = (VOICE[lang] || lang).split("-")[0].toLowerCase();
+  const sel = $("qVoice"); sel.innerHTML = ""; sel.add(new Option("Voice: Automatic", ""));
+  const list = (await getVoices()).filter(v => v.lang.toLowerCase().startsWith(prefix));
+  list.forEach(v => sel.add(new Option(v.name, v.voiceURI)));
+  if (!list.length) { const o = new Option("No " + LANGS[lang] + " voice installed", "none"); o.disabled = true; sel.add(o); }
+  sel.value = settings.voices[lang] || "";
+}
+function syncQuick() {
+  const steps = [0.6, 0.8, 1, 1.2, 1.4];
+  const near = steps.reduce((a, b) => Math.abs(b - settings.rate) < Math.abs(a - settings.rate) ? b : a);
+  $("qSpeed").value = String(near); fillQuickVoices();
+}
+$("qVoice").addEventListener("change", e => {
+  if (e.target.value) settings.voices[tgt.value] = e.target.value; else delete settings.voices[tgt.value];
+  saveSettings();
+});
+$("qSpeed").addEventListener("change", e => { settings.rate = parseFloat(e.target.value); saveSettings(); });
+tgt.addEventListener("change", fillQuickVoices);
+$("settings").addEventListener("close", syncQuick);
+syncQuick();
+</script>
+</body>
+</html>
